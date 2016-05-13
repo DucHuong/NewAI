@@ -148,6 +148,7 @@ def getPoint(board):
 turn = firstTurn
 import random as rd
 ii = 0
+<<<<<<< HEAD
 dem = 0
 ##
 ##limitso = 100000
@@ -198,5 +199,57 @@ dem = 0
 ##            ii += 1
 ##            turn = firstTurn
 ##print (len(board)+1)
+=======
+dem = 7000
+
+limitso = 100000
+while 1:
+    if ii > 1: break
+    ff, ss = getPoint(board)
+    if ff+ss > 58: break
+    if turn == firstTurn:
+        cho = getMoveValid(board, turn)
+        if cho:
+            ii=0
+            for c in cho:
+                bb = [x for x in board]
+                makeMove(bb, turn, c)
+                directory = "_second"
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+                path = os.path.join(directory, 'second' + str(dem) + '.txt')
+                f = open(path, 'w')
+                f.writelines(str(bb)[1:-1])
+                dem +=1
+                f.close()
+            rd.shuffle(cho)
+            makeMove(board, turn, cho[0])
+            turn = secondTurn
+        else:
+            ii += 1
+            turn = secondTurn
+    else:
+        cho = getMoveValid(board, turn)
+        if cho:
+            ii = 0
+            for c in cho:
+                bb = [x for x in board]
+                makeMove(bb, turn, c)
+                directory = "_first"
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+                path = os.path.join(directory, 'first' + str(dem) + '.txt')
+                f = open('first' + str(dem) + '.txt', 'w')
+                dem+=1
+                f.writelines(str(bb)[1:-1])
+                f.close()
+            rd.shuffle(cho)
+            makeMove(board, turn, cho[0])
+            turn = firstTurn
+        else:
+            ii += 1
+            turn = firstTurn
+print (len(board)+1)
+>>>>>>> c09b95925119ce34c1a2f0d4d1712ef6919364f8
 def createInput(vBoard):
     pass
