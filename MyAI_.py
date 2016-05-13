@@ -1,4 +1,4 @@
-import numpy as np
+﻿import numpy as np
 import random as rd
 import glob
 import os
@@ -298,22 +298,6 @@ def readFile(filename):
     data = f.readlines()
     borad_ = data[0].split(', ')
     board_ = [int(x) for x in borad_]
-    #board_1 = []
-    #for x in board_:
-    #    if x == 1:
-    #        board_1.append(3)
-    #    else: board.append(x)
-    #board_2 = []
-    #for x in board_1:
-    #    if x == 2:
-    #        board_2.append(1)
-    #    else: board.append(x)
-
-    #board_ = []
-    #for x in board_2:
-    #    if x == 3:
-    #        board_.append(2)
-    #    else: board_.append(x)
 
     eV = (float(data[1])+ 100.0)/ 200.0
     f.close()
@@ -385,6 +369,34 @@ def train(myNet):
             if 0 < i < 3:
                 numDisc = numDisc + 1
         myNet.eval3(bbb, numDisc, eV)
+
+    for filename in glob.glob('_first\\*.txt'):
+        print("+++++++++++++++++++++++++++++++++++++")
+        board, eV = readFile(filename)
+        
+        board_1 = []
+        board_ = board
+        for x in board_:
+            if x == 1:
+                board_1.append(3)
+            else: board.append(x)
+        board_2 = []
+        for x in board_1:
+            if x == 2:
+                board_2.append(1)
+            else: board.append(x)
+
+        board_ = []
+        for x in board_2:
+            if x == 3:
+                board_.append(2)
+            else: board_.append(x)
+        bbb = [x for x in board_ if x != -1]
+        numDisc = 0
+        for i in bbb:
+            if 0 < i < 3:
+                numDisc = numDisc + 1
+        myNet.eval3(bbb, numDisc, eV)
         #break
 #bbb = [-1, -1, -1, -1, -1, -1, -1, -1, -1,
 #       -1, 0, 1, 1, 1, 0, 0, 0, 1, 
@@ -432,7 +444,7 @@ popu = []
 
 #myNet.eval3(bbb, numDisc, eV)
 
-for dem in range(10): #Test tim kiem node toi uu        
+for dem in range(20): #Test tim kiem node toi uu        
     myNet = Network3()
     myNet.createRand(cf.numNodeInput, cf.numNodeHid1, cf.numNodeHid2, cf.numNodeHid3)    
     train(myNet)
