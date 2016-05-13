@@ -62,7 +62,7 @@ class cf:
     pointWin = 5
     pointDraw = 1
     pointLose = 0
-    err = 0.0001
+    err = 0.00005
     probability_add = 0.25
     probablity_multation = 0.01
 
@@ -197,7 +197,7 @@ class Network:
             #print (err)
             ee+=1
             minLst.append(abs(err))
-            if ee > 5000:
+            if ee > 500:
                 thongso.append([min(minLst), self.numberNodeH1, self.numberNodeH2, self.numberNodeH3])
                 print min(minLst), self.numberNodeH1, self.numberNodeH2, self.numberNodeH3
                 break
@@ -234,7 +234,7 @@ class Network:
             err = expectValue - oH4[0] 
         
         global dsDacbiet
-        if ee <=5000:
+        if ee <=500:
             dsDacbiet.append([min(minLst), self.numberNodeH1, self.numberNodeH2, self.numberNodeH3])
             print "Danh sach dac biet"
             print min(minLst), self.numberNodeH1, self.numberNodeH2, self.numberNodeH3
@@ -421,10 +421,10 @@ def train(myNet):
 #        numDisc = numDisc + 1
 popu = []
 
-for dem in range(20): #Test tim kiem node toi uu
+for dem in range(2-1-0): #Test tim kiem node toi uu
     for i in range(35, 60):
         for j in range(25, i):
-            for k in range(20, j):
+            for k in range(10, j):
                 cf.numNodeHid1 = i
                 cf.numNodeHid2 = j
                 cf.numNodeHid3 = k
@@ -435,7 +435,7 @@ for dem in range(20): #Test tim kiem node toi uu
                 #break
                 #popu.append(myNet)
                 #p = input("Da ket thuc")
-                print ("Save net " + str(dem))
+#                print ("Save net " + str(dem))
         #break 
     #break
 print ("Tuyen Chon nut toi uu")

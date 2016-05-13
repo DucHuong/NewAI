@@ -148,7 +148,7 @@ def getPoint(board):
 turn = firstTurn
 import random as rd
 ii = 0
-dem = 0
+dem = 7000
 
 limitso = 100000
 while 1:
