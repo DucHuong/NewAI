@@ -494,7 +494,7 @@ matran2 =[
 
 import glob
 import os
-for filename in glob.glob('_first\\*.txt'):
+for filename in glob.glob('_first/*.txt'):
     f = open(os.path.join(os.getcwd(), filename), 'r')
     v = f.readlines()
     board = v[0].split(', ')
